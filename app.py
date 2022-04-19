@@ -1,6 +1,8 @@
 import json
-from os import truncate
+from pprint import pprint
 from abidjan_net import AbidjanNet
+from koaci import Koaci
+from linfodrome import Linfodrome
 
 def app(environ, start_response):
     data = list()
@@ -9,6 +11,16 @@ def app(environ, start_response):
         if environ['PATH_INFO'] == '/abidjan_net':
             abidjan_net = AbidjanNet()
             articles = abidjan_net.get_articles()
+            data = bytes(json.dumps(articles), 'utf-8')
+
+        if environ['PATH_INFO'] == '/koaci':
+            koaci = Koaci()
+            articles = koaci.get_articles()
+            data = bytes(json.dumps(articles), 'utf-8')
+       
+        if environ['PATH_INFO'] == '/linfodrome':
+            linfodrome = Linfodrome()
+            articles = linfodrome.get_articles()
             data = bytes(json.dumps(articles), 'utf-8')
 
         start_response("200 OK", [

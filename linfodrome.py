@@ -27,7 +27,7 @@ class Linfodrome(Crawler):
                 "href": self.HOST + self.get_article_url(a)
             })
         
-        return self.articles
+        return self.articles[:15]
 
     def get_article_title(self, article: NavigableString, is_display=False) -> str:
         return article.find("a", class_="in-link-inherit").get_text()

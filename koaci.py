@@ -1,4 +1,3 @@
-import json
 from crawler import Crawler
 from bs4 import NavigableString
 import re
@@ -13,7 +12,8 @@ class Koaci(Crawler):
 
         super().__init__(self.url)
 
-    def get_articles(self) -> list:        
+    def get_articles(self) -> list:       
+        print("koaci") 
         for a in self.soup.find_all("div", class_=self.ARTICLES_CONTAINER_CLASS):
             self.articles.append({
                 "title": self.get_article_title(a),
